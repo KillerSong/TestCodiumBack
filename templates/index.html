@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+
+<body class = "mt-3 ms-5 me-5 ">
+
+    {% block content %}
+
+    <h2 align="center">กรอกข้อมูล</h2>
+    <form action="addform" method="post" class = "ms-auto me-auto" style="width: 800px;">
+      {% csrf_token %}
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">ชื่อ</span>
+            <input type="text" class="form-control" placeholder="Name" aria-label="name" aria-describedby="basic-addon1"
+                name="name" required>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">อายุ</span>
+            <input type="text" class="form-control" placeholder="Age" aria-label="age" aria-describedby="basic-addon1"
+                name="age" required>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">เบอร์โทรศัพท์</span>
+            <input type="text" class="form-control" placeholder="Phone Number" aria-label="phone"
+                aria-describedby="basic-addon1" name="phone" required>
+        </div>
+        <input type="submit" value="บันทึกข้อมูล" class="btn btn-success">
+    </form>
+
+    <h2 align = "center">
+        แสดงรายชื่อทั้งหมด
+    </h2>
+    <table class="table ms-auto me-auto" style="width: 1200px;" >
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Delete</th>
+            <th scope="col">Edit</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for x in people %}
+          <tr>
+            <td>{{x.name}}</td>
+            <td>{{x.age}}</td>
+            <td>{{x.phone}}</td>
+            <td><a href="delete/{{ x.id }}">delete</a></td>
+            <td><a href="update/{{ x.id }}">edit</a></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+
+    {% endblock %}
+
+
+
+</body>
+
+</html>

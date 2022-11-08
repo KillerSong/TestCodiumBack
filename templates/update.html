@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แก้ไขข้อมูล</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+
+<body >
+
+    {% block content %}
+
+    <h2 align="center">กรอกข้อมูลใหม่</h2>
+    <form action="addupdate/{{ mymember.id }}" method="post">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">ชื่อ</span>
+            <input type="text" class="form-control" value="{{ mymember.name }}" aria-label="name" aria-describedby="basic-addon1"
+                name="name" >
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">อายุ</span>
+            <input type="text" class="form-control" value="{{ mymember.age }}" aria-label="age" aria-describedby="basic-addon1"
+                name="age" >
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">เบอร์โทรศัพท์</span>
+            <input type="text" class="form-control" value="{{ mymember.phone }}" aria-label="phone"
+                aria-describedby="basic-addon1" name="phone" required>
+        </div>
+        <input type="submit" value="แก้ไขข้อมูล " class="btn btn-success">
+    </form>
+
+
+    {% endblock %}
+
+
+
+</body>
+
+</html>
